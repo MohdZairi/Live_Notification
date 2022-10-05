@@ -9913,7 +9913,7 @@ a:focus {
 }
 
 .bg-gradient-secondary {
-  background-color: #858796;
+  background-color: #6a329f;
   background-image: linear-gradient(180deg, #858796 10%, #60616f 100%);
   background-size: cover;
 }
@@ -10689,7 +10689,7 @@ a:focus {
 }
 
 .sidebar-dark .sidebar-brand {
-  color: #fff;
+  color: #6a329f;
 }
 
 .sidebar-dark hr.sidebar-divider {
