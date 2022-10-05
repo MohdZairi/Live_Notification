@@ -21,7 +21,7 @@ session_start();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard: Sistem Amaran Pintar </title>
+    <title>Dashboard: Online Notification </title>
     <link rel="Icon" type="Icon" href="ico.png">
     <!-- Custom fonts for this template-->
     <link href="/livenotification/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
