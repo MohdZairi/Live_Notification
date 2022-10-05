@@ -69,7 +69,7 @@ if(isset($_POST['login_form']))
                     $result2 = mysqli_query($conn, $sql2);
                 }
                
-                $sql2 = "INSERT INTO token (UserName,Password_Hash,Selector_Hash,Expired_Date,User_ID) VALUES('$username', '$random_password', '$random_selector','$expiry_date','$ID')";
+                $sql2 = "INSERT INTO token (UserName,Password_Hash,Selector_Hash,Expired_Date) VALUES('$username', '$random_password', '$random_selector','$expiry_date')";
                 $result2 = mysqli_query($conn, $sql2);
 
                 // $sql = "SELECT * FROM token WHERE UserName='$username' AND Is_Expired='$expired'";
