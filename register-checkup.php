@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once "inc/config.php";
 
 if(isset($_POST["submit_form"]))
@@ -20,32 +19,36 @@ if(isset($_POST["submit_form"]))
 	 $email = validate_data( $_POST['EMail'] );
 	 $location = validate_data( $_POST['Location'] );
 	 $password = validate_data( $_POST['Password'] );
-	 $image ="img/noprofil.jpg";
-
+	 $imageName = $_FILES["image"]["name"];
+      $imageSize = $_FILES["image"]["size"];
+      $tmpName = $_FILES["image"]["tmp_name"];
 
       $imageExtension = explode('.', $imageName);
       $imageExtension = strtolower(end($imageExtension));
 
 	$sql = "SELECT * FROM user WHERE Email='$email' ";
 	$result = mysqli_query($conn, $sql);
+	$local = "SELECT * FROM user WHERE LocationAccess='$location' ";
+	$res = mysqli_query($conn, $local);
 	if (mysqli_num_rows($result) > 0) 
 	{
 		header("Location: register.php?error=This email ".$email." is already taken");
 	}
+	else if (mysqli_num_rows($res) > 0) 
+	{
+		header("Location: register.php?error=This location ".$location." is already taken");
+	}
 	else
 	{
-		
-		$sql2 = "INSERT INTO user (FullName,UserName,Password,Phone,Email,LocationAccess,Picture) VALUES('$fullname','$username','$password','$phone','$email','$location','$image')";
+		$newImageName = "img/".$username . " - " . date("Y.m.d") . " - " . date("h.i.sa"); // Generate new image name
+        $newImageName .= '.' . $imageExtension;
+		$sql2 = "INSERT INTO user (FullName,UserName,Password,Phone,Email,LocationAccess,Picture) VALUES('$fullname','$username','$password','$phone','$email','$location',' $newImageName')";
 		$result2 = mysqli_query($conn, $sql2);
 		if ($result2) 
-		{
-			$sql3 = "SELECT * FROM user WHERE Email='$email'";
-			$result3 = mysqli_query($conn, $sql3);
-			$row = mysqli_fetch_assoc($result3);
-			$_SESSION['picture'] = $row['Picture'];	
-			$_SESSION['email'] = $row['Email'];	
+		{	
+			move_uploaded_file($tmpName, $newImageName);
 		   //header("Location: register.php?error=Your account has been created successfully");
-			header("Location: uploadimage.php");
+			header("Location: login.php");
 			exit();
 		}
 		else 

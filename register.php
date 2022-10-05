@@ -164,6 +164,10 @@
                                             <input type="password" class="form-control form-control-user"
                                                 name="ConfirmPassword" placeholder="Confirm Password">
                                         </div>
+                                        Image
+                                        <div class="form-group">
+                                            <input type="file" name="image" id = "image" accept=".jpg, .jpeg, .png">
+                                        </div>
                                                                                 
 
                                         <input class="btn btn-secondary btn-user btn-block" type="submit"
